@@ -1,0 +1,6 @@
+<div ng-repeat="contact in contacts.contacts track by $index">
+	<span ng-click="contacts.getContact(contact.id)">{{ contact.id }}</span>
+	<span ng-click="contacts.getContact(contact.id)">{{ contact.name }}</span>
+</div>
+<hr>
+<ui-view></ui-view>

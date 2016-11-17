@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="contacts">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.active {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ui-view></ui-view>
+
+	<script src="libs/angular.js"></script>
+	<script src="libs/angular-ui-router.js"></script>
+
+	<script src="app.js"></script>
+	<script src="routes.js"></script>
+	<script src="components/app/controllers/app.controller.js"></script>
+	<script src="components/about/controllers/about.controller.js"></script>
+	<script src="components/contacts/controllers/contacts.controller.js"></script>
+	<script src="components/contacts/controllers/contact-details.controller.js"></script>
+</body>
+</html>
