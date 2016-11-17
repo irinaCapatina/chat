@@ -1,0 +1,24 @@
+<header>
+	<nav>
+		<ul>
+			<li>
+				<a ui-sref="app.about">About</a>
+			</li>
+			<li>
+				<a ui-sref="app.contacts">Contacts</a>
+			</li>
+			<li>
+			<a ui-sref="app.contact.add" ui-sref-opts="{reload: true}">Add new contact</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+<hr> 
+	<div class="container">
+		<ui-view></ui-view>
+	</div>
+	<br>
+	<hr>
+<footer>
+	FOOTER
+</footer>

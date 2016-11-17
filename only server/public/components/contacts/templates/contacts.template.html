@@ -1,0 +1,14 @@
+<div ng-repeat="contact in contacts.contacts track by $index">
+	<span ng-click="contacts.getContact(contact.id)">{{ contact.name }}</span> |
+	<span class="changeCursor" ng-click="contacts.editContact(contact.id)">Edit</span> |
+	<span class="changeCursor" ng-click="contacts.deleteContact(contact.id)">x</span> 
+	
+
+<!--    <span> <button class="changeCursor" style="border: 0.5px solid;
+ border-radius: 5px;" ng-click="contacts.editContact(contact.id)">Delete </button></span> -->
+
+</div>
+<hr>
+<ui-view></ui-view>
+
+

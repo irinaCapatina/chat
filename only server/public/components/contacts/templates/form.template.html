@@ -1,0 +1,13 @@
+<form>
+	<label>
+		Name: <input placeholder="Enter name" type="text" ng-model="contact.contact.name">
+	</label>
+	<label>
+		Phone:
+		<input placeholder="Enter phone" type="text" ng-model="contact.contact.phone">
+	</label>
+	<label> Address:
+		<input placeholder="Enter address" type="text" ng-model="contact.contact.address">
+	</label>
+		<button ng-click="contact.validOnChanges()"> Save</button>
+</form>
