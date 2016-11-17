@@ -1,0 +1,11 @@
+.align-content {
+	align-content: center;
+}
+
+#content {
+  max-width: 200px;
+  margin: 20px auto 0 auto;
+}
+#pagination {
+  text-align: center;
+}
