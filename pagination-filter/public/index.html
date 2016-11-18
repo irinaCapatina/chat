@@ -2,79 +2,93 @@
 <html lang="en" ng-app="app">
 
 <head>
-	 <meta charset="UTF-8">
-	 <title>Filter Table</title>
-	 <link rel="stylesheet" href="css/materialize.min.css" media="screen,projection">
-	 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	 <link rel="stylesheet" href="css/style.css">
+	<meta charset="UTF-8">
+	<title>Filter Table</title>
+	<link rel="stylesheet" href="css/materialize.min.css" media="screen,projection">
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-	<div class="container">
-	 <script src="libs/angular.js"></script>
-	 <script src="app.js"></script>
-	 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	 <script type="text/javascript" src="js/materialize.min.js"></script>
 
-	 <div ng-controller="MainController as main">
-		  <div class="row">
-				<form class="col s12">
-					 <div class="row">
-						  <div class="input-field col s6">
-								<i class="material-icons prefix">search</i>
-								<input id="icon_prefix" type="text" class="validate" ng-model="main.searchName">
-								<label for="icon_prefix">Input filter text here</label>
-						  </div>
-					 </div>
-				</form>
-		  </div>
-	 
-	 <table class="striped">
-		  <thead>
-				<tr>
-					 <th data-field="name">Item Name</th>
-					 <th data-field="price">Item Price</th>
-					 <th data-field="deliveryDate">Delivery Date</th>
-					 <th data-field="description">Item Description</th>
-				</tr>
-		  </thead>
-		  <tbody>
-				<tr ng-repeat="item in main.collection | filter: main.searchName">
-					 <td>{{ item.name}}</td>
-					 <td ng-bind-html="item.price | PriceFilter"> {{ item.price | currency:"USD$" }}</td>
-					 <td>{{ item.deliveryDate | date:"dd/MM/yyyy HH:mm:ss"}}</td>
-					 <td>{{ item.description}}</td>
-				</tr>
-		  </tbody>
-	 </table>
-	 </div>
+
+	<div class="container">
+		<script src="libs/angular.js"></script>
+		<script src="app.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+
+<div ng-controller="MainController as main">
+	<div class="row">
+		<form class="col s12">
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">search</i>
+					<input id="icon_prefix" type="text" class="validate" ng-model="main.searchName">
+					<label for="icon_prefix">Input filter text here</label>
+				</div>
+				<div class="input-field col s6">
+					<select class="icons">
+						<option value="" disabled selected>Choose your option</option>
+						<option value="" data-icon="images/phone.svg">Phone</option>
+						<option value="" data-icon="images/tv.svg">TV</option>
+						<option value="" data-icon="images/watch.svg" class="circle">Watch</option>
+						<option value="" data-icon="images/tablet.svg" class="circle">Tablet</option>
+						<option value="" data-icon="images/videogame.svg" class="circle">Videogame</option>
+					</select>
+				</div>
+			</div>
+	</div>
+
+
+	
+<table class="striped">
+	<thead>
+		<tr>
+			<th>Item Name</th>
+			<th>Item Price</th>
+			<th>Delivery Date</th>
+			<th>Item Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in main.collection | filter: main.searchName | StartFrom: main.startingItem() | limitTo: main.itemsPerPage">
+			<td>{{ item.name}}</td>
+			<td ng-bind-html="item.price | PriceFilter"></td>
+			<td>{{ item.deliveryDate | date:"dd/MM/yyyy HH:mm:ss"}}</td>
+			<td>{{ item.description}}</td>
+		</tr>
+	</tbody>
+</table>
+<!-- <div class="right-align">
+	<button class="pull-left btn btn-primary btn-sm" ng-disabled="main.mainPage()" ng-click="main.pageBack()"> Previous </button>
+	<span>{{ main.currentPage }} from {{ main.nrOfPages() }}</span>
+	<button class="pull-right btn btn-primary btn-sm" ng-disabled="main.lastPage()" ng-click="main.pageForward()"> Next </button>
+</div>
+</div> -->
 
 <!-- pagination -->
-<ul class="pagination" ng-app="app" ng-controller="PaginationController">
-	<li><a href="#!"><i class="material-icons" ng-disabled="app.firstPage()" ng-click="app.pageBack()">chevron_left</i></a></li>
-	<li class="waves-effect"><a href="#!">1</a></li>
-	<li class="waves-effect"><a href="#!">2</a></li>
-	<li class="waves-effect"><a href="#!">3</a></li>
-	<li class="waves-effect"><a href="#!">4</a></li>
-	<li class="waves-effect"><a href="#!">5</a></li>
-	<li class="waves-effect"><a href="#!"><i class="material-icons" ng-disabled="app.lastPage()" ng-click="app.pageForward()">chevron_right</i></a></li>
-  </ul>
+<ul class="pagination right-align">
+    <li>
+        <i class="material-icons pagination cursor" ng-disabled="main.mainPage()" ng-click="main.pageBack()">chevron_left</i></a>
+    </li>
+    <span>{{ main.currentPage }} from {{ main.nrOfPages() }}</span>
+    <li class="waves-effect"><i class="material-icons pagination" ng-disabled="main.lastPage()" ng-click="main.pageForward()">chevron_right</i></a>
+    </li>
+</ul>
 
 
-<div ng-app="app" ng-controller="PaginationController">
-<div id="content">
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="item in items | startFrom: app.startingItem() | limitTo: app.itemsNr">{{ item.name }}</li>
-  </ul>
-  <div id="pagination" class="row">
-    <button class="pull-left btn btn-primary btn-sm" ng-disabled="app.firstPage()" ng-click="app.pageBack()"> Previous </button>
-    <span>{{ app.currentPage + 1 }} from {{ app.nrOfPages() }}</span>
-    <button class="pull-right  btn btn-primary btn-sm" ng-disabled="app.lastPage()" ng-click="app.pageForward()"> Next </button>
-  </div>
-</div>
-</div>
 
+
+
+<!-- select form here -->
+<script>
+$(document).ready(function() {
+	$('select').material_select();
+});
+</script>
 
 </body>
 </html>

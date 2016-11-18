@@ -1,11 +1,21 @@
-.align-content {
-	align-content: center;
+.pagination {
+	color: #5F021F !important;
 }
-
-#content {
-  max-width: 200px;
-  margin: 20px auto 0 auto;
+.waves-ripple {
+     /* The alpha value allows the text and background color
+     of the button to still show through. */
+      background-color: #5F021F;
+    }
+.cursor {
+	cursor: pointer;
 }
-#pagination {
-  text-align: center;
+/*.input-field label {
+  color: #5F021F !important;
+  position: absolute;
+  top: 0.8rem;
+  left: 0;
+  font-size: 1rem;
+  cursor: text;
+  transition: .2s ease-out;
 }
+*/
